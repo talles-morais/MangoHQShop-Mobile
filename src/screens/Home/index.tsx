@@ -1,10 +1,12 @@
-import { Text, TextInput, View } from "react-native";
-import { DecorLine, Header, HeaderWrapper, Logo, ProfilePicture, SearchBar, SearchIcon, SearchInput } from "./styles";
+import { Text, View } from "react-native";
+import { DecorLine, Header, HeaderWrapper, ProfilePicture } from "./styles";
 import LogoSVG from "../../../assets/header/logo.svg"
+import SearchField from "../../components/SearchField";
 
 export default function Home() {
   return (
     <View>
+      {/* Header */}
       <HeaderWrapper>
         <Header>
           <LogoSVG width={48} height={48} />
@@ -13,12 +15,12 @@ export default function Home() {
           </ProfilePicture>
         </Header>
         
-        <SearchBar>
-            <SearchInput/>
-            <SearchIcon name="search-sharp"></SearchIcon>
-        </SearchBar>
+        <SearchField />
       </HeaderWrapper>
       <DecorLine />
+
+      {/* Footer */}
+
     </View>
   )
 };
