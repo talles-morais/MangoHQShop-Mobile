@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "MangoHQShop",
+    "slug": "MangoHQShop",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
