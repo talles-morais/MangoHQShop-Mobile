@@ -2,10 +2,11 @@ import { RFValue } from "react-native-responsive-fontsize"
 import styled from "styled-components/native"
 import { Ionicons } from '@expo/vector-icons'
 import theme from "../../global/styles/theme";
+import { DefaultTheme } from "styled-components/dist/types";
 
-export const SearchBar = styled.View`
+export const SearchBar = styled.View<{theme : DefaultTheme}>`
   width: 100%;
-  background-color: ${theme.colors.background};
+  background-color: ${({theme}) => theme.colors.background};
   flex-direction: row;
   border-radius: ${RFValue(8)}px;
   justify-content: space-between;
@@ -18,7 +19,7 @@ export const SearchInput = styled.TextInput`
 `
 
 export const SearchIcon = styled(Ionicons)`
-  color: ${theme.colors.secondary};
+  color: ${({theme}) => theme.colors.secondary};
   font-size: ${RFValue(24)}px;
   width: 10%;
 `
