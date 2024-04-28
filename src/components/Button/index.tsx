@@ -5,11 +5,17 @@ interface ButtonProps {
   textColor?: string,
   bgColor?: string,
   borderColor?: string,
+  screen?: string,
+  navigation?: any
 }
 
-export default function Button({text, textColor, bgColor, borderColor} : ButtonProps) {
+export default function Button({text, textColor, bgColor, borderColor, screen, navigation} : ButtonProps) {
   return (
-    <ButtonWrapper bgColor={bgColor} borderColor={borderColor}>
+    <ButtonWrapper 
+      bgColor={bgColor} 
+      borderColor={borderColor}
+      onPress={() => {screen && navigation ? navigation.navigate(screen) : null}}
+    >
       <ButtonText color={textColor}>
         {text}
       </ButtonText>
