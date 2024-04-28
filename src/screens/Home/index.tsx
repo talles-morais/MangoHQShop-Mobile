@@ -39,7 +39,8 @@ export default function Home() {
 
         <DevelopedBy>
           <CustomText fontsize={16}>
-            Desenvolvido por:
+            Desenvolvidog por:
+            ll
           </CustomText>
           <ByronLogo />
         </DevelopedBy>

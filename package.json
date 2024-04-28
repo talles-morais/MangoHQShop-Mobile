@@ -9,9 +9,13 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "expo": "~50.0.14",
+    "@expo-google-fonts/overpass": "^0.2.3",
+    "expo": ">=50.0.0-0 <51.0.0",
+    "expo-font": "~11.10.3",
+    "expo-splash-screen": "^0.26.5",
     "expo-status-bar": "~1.11.1",
     "react": "18.2.0",
+    "react-dom": "^18.2.0",
     "react-native": "0.73.6",
     "react-native-responsive-fontsize": "^0.5.1",
     "react-native-svg": "^15.2.0",

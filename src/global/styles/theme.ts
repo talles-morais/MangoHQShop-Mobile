@@ -6,5 +6,9 @@ export default {
 
     background: '#FFF',
     shape: '#000'
+  },
+
+  fonts: {
+    regular: "OverpassRegular"
   }
 }
