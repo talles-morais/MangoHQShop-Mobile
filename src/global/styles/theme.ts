@@ -9,6 +9,7 @@ export default {
   },
 
   fonts: {
-    regular: "OverpassRegular"
+    regular: "OverpassRegular",
+    medium: "OverpassMedium"
   }
 }
