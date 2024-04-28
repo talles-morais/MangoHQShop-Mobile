@@ -1,11 +1,8 @@
-import React, { useCallback } from 'react';
-import Home from './src/screens/Home';
+import 'react-native-gesture-handler';
 import { ThemeProvider } from 'styled-components/native';
 import theme from './src/global/styles/theme';
 import { useFonts, Overpass_400Regular } from '@expo-google-fonts/overpass';
-import * as SplashScreen from "expo-splash-screen"
-
-
+import Navigation from './src/routes/navigation';
 
 export default function App() {
 
@@ -19,7 +16,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Home />
+      <Navigation/>
     </ThemeProvider>
   );
 }

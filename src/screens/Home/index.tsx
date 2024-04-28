@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { CustomText, DecorLine, DevelopedBy, Footer, Header, HeaderWrapper, ProfilePicture, SocialMedia } from "./styles";
 import MangoLogo from "../../../assets/header/logo.svg"
 import ByronLogo from "../../../assets/footer/logo-byron.svg"
