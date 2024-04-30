@@ -1,28 +1,26 @@
 import Google from "../../../assets/login/google-logo.svg"
 import Facebook from "../../../assets/login/facebook-logo.svg"
-import { AuthWrapper, ConnectText } from "./styles"
-import { StyleSheet, Text, View } from "react-native"
-import theme from "../../global/styles/theme"
+import { AuthWrapper, ConnectText, SocialSection } from "./styles"
 
-export default function OAuthSection() {
+export default function OAuthSection({text } : {text: string}) {
   return (
     <AuthWrapper>
+      <ConnectText fontsize="24">
+        {text}
+      </ConnectText>
       <ConnectText>
-        Conecte-se com sua conta social:
+        com
       </ConnectText>
 
-      <View style={styles.container}>
-        <Google />
+      <SocialSection>
+        <Google style={{
+          borderWidth: 2,
+          borderStyle: "solid",
+          borderColor: "#000",
+        }}/>
         <Facebook />
-      </View>
+      </SocialSection>
     </AuthWrapper>
   )
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    gap: 32,
-    justifyContent: "center",
-  },
-})
