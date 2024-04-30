@@ -8,6 +8,7 @@ export const SearchBar = styled.View<{theme : DefaultTheme}>`
   width: 100%;
   background-color: ${({theme}) => theme.colors.background};
   flex-direction: row;
+  border: 2px solid;
   border-radius: ${RFValue(8)}px;
   justify-content: space-between;
   padding: ${RFValue(4)}px ${RFValue(8)}px;

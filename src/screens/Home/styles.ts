@@ -4,7 +4,7 @@ import { RFValue } from "react-native-responsive-fontsize";
 import { DefaultTheme } from "styled-components/dist/types";
 
 export const HeaderWrapper = styled.View<{ theme: DefaultTheme }>`
-  background-color: ${({ theme }) => theme.colors.primary};
+  /* background-color: ${({ theme }) => theme.colors.primary}; */
   justify-content: flex-end;
   padding: ${RFValue(40)}px ${RFValue(16)}px ${RFValue(18.5)}px ${RFValue(16)}px;
 `;
@@ -23,6 +23,7 @@ export const ProfilePicture = styled.View<{ theme: DefaultTheme }>`
   height: ${RFValue(48)}px;
   width: ${RFValue(48)}px;
   border-radius: 100px;
+  border: 2px solid;
   background-color: ${({ theme }) => theme.colors.background};
   align-items: center;
   justify-content: center;
@@ -38,13 +39,14 @@ export const Footer = styled.View<{ theme: DefaultTheme }>`
   background-color: ${({ theme }) => theme.colors.secondary_light};
   justify-content: center;
   align-items: center;
+  padding: 0 ${RFValue(16)}px;
 `;
 
 export const CustomText = styled.Text<{ color?: string; fontsize?: number }>`
   color: ${(props) => props.color || "#FFF"};
   font-size: ${(props) => props.fontsize || 12}px;
   padding-top: ${RFValue(16)}px;
-  font-family: ${({ theme }) => theme.fonts.regular};
+  font-family: ${({ theme }) => theme.fonts.bold};
 `;
 
 export const SocialMedia = styled.View`

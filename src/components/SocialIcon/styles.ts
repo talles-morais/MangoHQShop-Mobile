@@ -7,6 +7,6 @@ export const Button = styled.TouchableOpacity`
 `
 
 export const Icon = styled(Ionicons)<{ theme: DefaultTheme }>`
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.shape};
   font-size: ${RFValue(20)}px;
 `;
