@@ -15,6 +15,7 @@ import { FormField } from "./styles";
 import { Label } from "./styles";
 import { ActionWrapper, Form, LoginContainer, ScrollWrapper, Wrapper } from "../Login/styles";
 import theme from "../../global/styles/theme";
+import api from "../../services/api";
 
 interface SignInProps {
   navigation: NavigationProp<any>;
@@ -48,16 +49,19 @@ export default function SignUp({ navigation }: SignInProps) {
     resolver: yupResolver(schema)
   });
 
-  const handleRegister: SubmitHandler<RegisterInputs> = (form) => {
+  const handleRegister: SubmitHandler<RegisterInputs> = async (form) => {
     const data = {
-      name: form.name,
+      nome: form.name,
       email: form.email,
-      phone: form.phone,
-      password: form.password,
+      telefone: form.phone,
+      senha: form.password,
       confirmPassword: form.confirmPassword
     }
 
-    console.log(data);
+    const resp = await api.post("/usuarios/", data);
+
+    console.log(resp);
+    console.log(resp.status);
   }
 
   return (
