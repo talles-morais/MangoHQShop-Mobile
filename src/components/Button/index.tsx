@@ -1,3 +1,4 @@
+import { GestureResponderEvent } from "react-native";
 import { ButtonText, ButtonWrapper } from "./styles";
 
 interface ButtonProps {
@@ -6,15 +7,24 @@ interface ButtonProps {
   bgColor?: string,
   borderColor?: string,
   screen?: string,
-  navigation?: any
+  navigation?: any,
+  handle?: (event: GestureResponderEvent) => void;
 }
 
-export default function Button({text, textColor, bgColor, borderColor, screen, navigation} : ButtonProps) {
+export default function Button({text, textColor, bgColor, borderColor, screen, navigation, handle} : ButtonProps) {
+  const onPressHandler = (event: GestureResponderEvent) => {
+    if (handle) {
+      handle(event);
+    } else if (navigation && screen) {
+      navigation.navigate(screen);
+    }
+  };
+
   return (
     <ButtonWrapper 
       bgColor={bgColor} 
       borderColor={borderColor}
-      onPress={() => {screen && navigation ? navigation.navigate(screen) : null}}
+      onPress={onPressHandler}
     >
       <ButtonText color={textColor}>
         {text}

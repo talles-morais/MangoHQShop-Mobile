@@ -4,7 +4,7 @@ import OAuthSection from "../../components/OAuthSection"
 import { DecorLine } from "../Home/styles"
 import theme from "../../global/styles/theme"
 import Button from "../../components/Button"
-import FormField from "../../components/FormField"
+import FormField from "../../components/InputForm"
 import { ConnectText } from "../../components/OAuthSection/styles"
 import { NavigationProp } from "@react-navigation/native"
 import { ImageBackground } from "react-native"
@@ -29,13 +29,13 @@ export default function Login({ navigation }: LoginProps) {
               <OAuthSection text="Faça Login!" />
               <DecorLine color={theme.colors.shape} />
 
-              <Form>
-                <ConnectText marginTop="16">
+              <Form >
+                <ConnectText  marginTop="16">
                   Ou conecte-se com um email:
                 </ConnectText>
 
                 <FormField label="E-mail:" />
-                <FormField label="Senha:" />
+                <FormField secure label="Senha:" />
 
                 <ActionWrapper>
                   <Button

@@ -1,21 +1,50 @@
+import { ImageBackground } from "react-native";
+import { NavigationProp } from "@react-navigation/native";
+import { SubmitHandler, useForm } from "react-hook-form";
+
 import Button from "../../components/Button";
-import FormField from "../../components/FormField";
 import OAuthSection from "../../components/OAuthSection";
 import { ConnectText } from "../../components/OAuthSection/styles";
-import theme from "../../global/styles/theme";
+import InputForm from "../../components/InputForm";
+
 import { DecorLine } from "../Home/styles";
-import { ActionWrapper, Form, LoginContainer, ScrollWrapper, Wrapper } from "../Login/styles";
-import { NavigationProp } from "@react-navigation/native";
 import Logo from "../../../assets/login/big-logo.svg"
-import BackgroundYellow from "../../../assets/background/bg-yellow.svg"
-import { ImageBackground, ScrollView, View } from "react-native";
+import { FormField } from "./styles";
+import { Label } from "./styles";
+import { ActionWrapper, Form, LoginContainer, ScrollWrapper, Wrapper } from "../Login/styles";
+import theme from "../../global/styles/theme";
 
 interface SignInProps {
-  navigation: NavigationProp<any>; // This can vary depending on your setup
+  navigation: NavigationProp<any>; 
 }
 
+type Inputs = {
+  name: string,
+  email: string,
+  phone: string,
+  password: string,
+  confirmPassword: string
+}
 
 export default function SignUp({ navigation }: SignInProps) {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
+
+  const handleRegister: SubmitHandler<Inputs> = (form) => {
+    const data = {
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      password: form.password,
+      confirmPassword: form.confirmPassword
+    }
+
+    console.log(data);
+  }
+
   return (
     <ImageBackground source={require("../../../assets/background/bg-yellow.png")}>
       <Wrapper>
@@ -37,11 +66,48 @@ export default function SignUp({ navigation }: SignInProps) {
                   Ou cadastre-se com um email:
                 </ConnectText>
 
-                <FormField label="Nome:" />
-                <FormField label="E-mail:" />
-                <FormField label="Telefone:" />
-                <FormField label="Senha:" />
-                <FormField label="Confirme a senha:" />
+                <FormField>
+                  <Label>Nome Completo:</Label>
+                  <InputForm 
+                    name="name"
+                    control={control}
+                    placeholder="Digite seu nome completo"
+                  />
+                </FormField>
+                <FormField>
+                  <Label>E-mail:</Label>
+                  <InputForm 
+                    name="email"
+                    control={control}
+                    placeholder="exemplo@email.com"
+                  />
+                </FormField>
+                <FormField>
+                  <Label>Telefone:</Label>
+                  <InputForm 
+                    name="phone"
+                    control={control}
+                    placeholder="(00) 00000-0000"
+                  />
+                </FormField>
+                <FormField>
+                  <Label>Senha:</Label>
+                  <InputForm 
+                    name="password"
+                    control={control}
+                    placeholder="Crie uma senha forte!"
+                    secureTextEntry={true}
+                  />
+                </FormField>
+                <FormField>
+                  <Label>Repita a senha:</Label>
+                  <InputForm 
+                    name="confirmPassword"
+                    control={control}
+                    placeholder="Repita a senha"
+                    secureTextEntry={true}
+                  />
+                </FormField>
 
                 <ActionWrapper>
                   <Button
@@ -56,8 +122,7 @@ export default function SignUp({ navigation }: SignInProps) {
                     text="Criar conta"
                     bgColor={theme.colors.secondary}
                     textColor={theme.colors.background}
-                    screen="Home"
-                    navigation={navigation}
+                    handle={handleSubmit(handleRegister)}
                   />
                 </ActionWrapper>
               </Form>
