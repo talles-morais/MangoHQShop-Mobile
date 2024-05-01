@@ -35,6 +35,14 @@ export const DecorLine = styled.View<{ color: string }>`
   background-color: ${(props) => props.color || props.theme.colors.background};
 `;
 
+export const MainWrapper = styled.ScrollView.attrs({
+  contentContainerStyle: {
+    alignItems: "center"
+  }
+})`
+  width: 100%;
+`
+
 export const Footer = styled.View<{ theme: DefaultTheme }>`
   background-color: ${({ theme }) => theme.colors.secondary_light};
   justify-content: center;

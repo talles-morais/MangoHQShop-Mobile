@@ -1,4 +1,4 @@
-import { ImageBackground, Keyboard, TouchableWithoutFeedback } from "react-native";
+import { Alert, ImageBackground, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -60,8 +60,11 @@ export default function SignUp({ navigation }: SignInProps) {
 
     const resp = await api.post("/usuarios/", data);
 
+    if(resp.status == 201){
+      Alert.alert("Usuario cadastrado com sucesso!");
+      navigation.navigate("Home");
+    }
     console.log(resp);
-    console.log(resp.status);
   }
 
   return (

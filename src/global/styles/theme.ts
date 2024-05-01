@@ -11,6 +11,7 @@ export default {
   fonts: {
     regular: "OverpassRegular",
     medium: "OverpassMedium",
-    bold: "OverpassBold"
+    bold: "OverpassBold",
+    passero: "Passero",
   }
 }
