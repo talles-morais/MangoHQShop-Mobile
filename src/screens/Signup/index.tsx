@@ -20,7 +20,7 @@ interface SignInProps {
   navigation: NavigationProp<any>;
 }
 
-type Inputs = {
+type RegisterInputs = {
   name: string,
   email: string,
   phone: string,
@@ -32,23 +32,23 @@ const schema = Yup.object().shape({
   name: Yup.string().required("Nome é obrigatório!"),
   email: Yup
     .string()
-    .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, {message: "Digite um email válido"})
+    .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, { message: "Digite um email válido" })
     .required("E-mail é obrigatório!"),
   phone: Yup.string().required("Telefone é obrigatóri0!"),
   password: Yup.string().required("Senha é obrigatória!"),
   confirmPassword: Yup.string().required("Confirmação de senha é obrigatória!")
-}) 
+})
 
 export default function SignUp({ navigation }: SignInProps) {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>({
+  } = useForm<RegisterInputs>({
     resolver: yupResolver(schema)
   });
 
-  const handleRegister: SubmitHandler<Inputs> = (form) => {
+  const handleRegister: SubmitHandler<RegisterInputs> = (form) => {
     const data = {
       name: form.name,
       email: form.email,
