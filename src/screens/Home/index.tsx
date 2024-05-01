@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { ImageBackground, Text, View } from "react-native";
 import { CustomText, DecorLine, DevelopedBy, Footer, Header, HeaderWrapper, ProfilePicture, SocialMedia } from "./styles";
 import MangoLogo from "../../../assets/header/logo.svg"
 import ByronLogo from "../../../assets/footer/logo-byron.svg"
@@ -11,21 +11,23 @@ export default function Home() {
   return (
     <View>
       {/* Header */}
-      <HeaderWrapper>
-        <Header>
-          <MangoLogo width={48} height={48} />
-          <ProfilePicture>
-            <Text>profile</Text>
-          </ProfilePicture>
-        </Header>
+      <ImageBackground source={require("../../../assets/background/bg-yellow.png")}>
+        <HeaderWrapper>
+          <Header>
+            <MangoLogo width={80} height={48} />
+            <ProfilePicture>
+              <Text>profile</Text>
+            </ProfilePicture>
+          </Header>
 
-        <SearchField />
-      </HeaderWrapper>
-      <DecorLine color={theme.colors.secondary}/>
+          <SearchField />
+        </HeaderWrapper>
+      </ImageBackground>
+      <DecorLine color={theme.colors.shape} />
 
       {/* Footer */}
       <Footer>
-        <CustomText color={theme.colors.primary} fontsize={16}>
+        <CustomText color={theme.colors.shape} fontsize={16}>
           Entre em contato através das redes sociais:
         </CustomText>
         <SocialMedia>
@@ -35,7 +37,7 @@ export default function Home() {
           <SocialIcon iconName="logo-facebook" />
         </SocialMedia>
 
-        <DecorLine color={theme.colors.primary}/>
+        <DecorLine color={theme.colors.shape} />
 
         <DevelopedBy>
           <CustomText fontsize={16}>
