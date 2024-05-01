@@ -1,6 +1,6 @@
 import { TextInputProps, View } from "react-native";
 import { Control, Controller } from "react-hook-form";
-import { Input } from "./styles";
+import { Input, Error } from "./styles";
 
 type Inputs = {
   name: string,
@@ -13,9 +13,10 @@ type Inputs = {
 interface Props extends TextInputProps {
   control: Control<Inputs>,
   name: keyof Inputs
+  error: string,
 }
 
-export default function InputForm({ control, name, ...rest } : Props) {
+export default function InputForm({ control, name, error, ...rest } : Props) {
 
   return (
     <View>
@@ -29,8 +30,8 @@ export default function InputForm({ control, name, ...rest } : Props) {
           />
         )}
         name={name}
-      >
-      </Controller>
+      />
+      {error && <Error>{error}</Error>}
     </View>
   )
 };
