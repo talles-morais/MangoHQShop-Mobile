@@ -14,6 +14,8 @@ import { FormField, Label } from "../Signup/styles"
 import { ConnectText } from "../../components/OAuthSection/styles"
 import InputForm from "../../components/InputForm"
 
+import api from "../../services/api"
+
 interface LoginProps {
   navigation: NavigationProp<any>;
 }
@@ -40,12 +42,16 @@ export default function Login({ navigation }: LoginProps) {
     resolver: yupResolver(schema)
   });
 
-  const handleLogin: SubmitHandler<LoginInputs> = (form) => {
+  const handleLogin: SubmitHandler<LoginInputs> = async (form) => {
     const data = {
       email: form.email,
       password: form.password,
     }
 
+    const resp = await api.post("/usuarios/login", data);
+    if(resp.status == 200)
+      navigation.navigate("Home")
+  
     console.log(data);
   }
 
