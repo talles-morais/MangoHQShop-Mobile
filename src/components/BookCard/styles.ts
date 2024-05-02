@@ -21,8 +21,8 @@ export const Cover = styled.Image`
 export const BookDesc =styled.View`
   justify-content: center;
   align-items: center;
-  padding: ${RFValue(8)}px ${RFValue(4)}px;
-  height: ${RFValue(80)}px;
+  padding: ${RFValue(8)}px ${RFValue(2)}px;
+  height: ${RFValue(100)}px;
 `
 
 export const BookTitle = styled.Text`
