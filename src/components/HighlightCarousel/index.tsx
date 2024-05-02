@@ -11,12 +11,11 @@ import Carousel from "react-native-reanimated-carousel";
 import CarouselItem  from "../CarouselItem";
 import { RFValue } from "react-native-responsive-fontsize";
 import theme from "../../global/styles/theme";
-// import SButton from "../../components/SButton";
-// import { ElementsText, window } from "../../constants";
 
 const { width } = Dimensions.get("window");
 const PAGE_WIDTH = width
 const colors = [
+  "#26292E",
   "#26292E",
   "#26292E",
   "#26292E",
@@ -104,30 +103,6 @@ function HighlightCarousel() {
           })}
         </View>
       )}
-      {/* <SButton
-        onPress={() => setAutoPlay(!autoPlay)}
-      >{`${ElementsText.AUTOPLAY}:${autoPlay}`}</SButton>
-      <SButton
-        onPress={() => {
-          setIsVertical(!isVertical);
-        }}
-      >
-        {isVertical ? "Set horizontal" : "Set Vertical"}
-      </SButton>
-      <SButton
-        onPress={() => {
-          setPagingEnabled(!pagingEnabled);
-        }}
-      >
-        {`pagingEnabled:${pagingEnabled}`}
-      </SButton>
-      <SButton
-        onPress={() => {
-          setSnapEnabled(!snapEnabled);
-        }}
-      >
-        {`snapEnabled:${snapEnabled}`}
-      </SButton> */}
     </View>
   );
 }

@@ -1,10 +1,8 @@
 import styled from "styled-components/native";
-import { Ionicons } from "@expo/vector-icons";
 import { RFValue } from "react-native-responsive-fontsize";
 import { DefaultTheme } from "styled-components/dist/types";
 
 export const HeaderWrapper = styled.View<{ theme: DefaultTheme }>`
-  /* background-color: ${({ theme }) => theme.colors.primary}; */
   justify-content: flex-end;
   padding: ${RFValue(40)}px ${RFValue(16)}px ${RFValue(18.5)}px ${RFValue(16)}px;
 `;
@@ -43,17 +41,44 @@ export const MainWrapper = styled.ScrollView.attrs({
   width: 100%;
 `
 
+export const Promo = styled.View<{ theme: DefaultTheme }>`
+  width: 100%;
+  background-color: ${({theme}) => theme.colors.secondary_light};
+  align-items: center;
+  padding: ${RFValue(16)}px 0;
+`
+
+export const PromoBooks = styled.View<{ theme: DefaultTheme }>`
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-evenly;
+`
+
+export const ForYou = styled.View`
+  width: 100%;
+  padding: ${RFValue(24)}px ${RFValue(16)}px;
+`
+
+export const ListWrapper = styled.View`
+  width: 100%;
+  align-items: center;
+`
+
+export const BookList = styled.FlatList`
+
+`
+
 export const Footer = styled.View<{ theme: DefaultTheme }>`
   background-color: ${({ theme }) => theme.colors.secondary_light};
   justify-content: center;
   align-items: center;
-  padding: 0 ${RFValue(16)}px;
+  padding: ${RFValue(16)}px ${RFValue(16)}px ${RFValue(24)}px;
 `;
 
 export const CustomText = styled.Text<{ color?: string; fontsize?: number }>`
   color: ${(props) => props.color || "#FFF"};
   font-size: ${(props) => props.fontsize || 12}px;
-  padding-top: ${RFValue(16)}px;
+
   font-family: ${({ theme }) => theme.fonts.bold};
 `;
 
@@ -65,5 +90,5 @@ export const SocialMedia = styled.View`
 
 export const DevelopedBy = styled.View`
   align-items: center;
-  padding-bottom: ${RFValue(24)}px;
+  margin: ${RFValue(16)}px 0 0;
 `;

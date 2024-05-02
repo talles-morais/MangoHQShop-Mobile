@@ -1,17 +1,70 @@
-import { ImageBackground, Text, View } from "react-native";
-import { CustomText, DecorLine, DevelopedBy, Footer, Header, HeaderWrapper, MainWrapper, ProfilePicture, SocialMedia } from "./styles";
+import { ImageBackground, ScrollView, Text, View } from "react-native";
+import {
+  CustomText,
+  DecorLine,
+  DevelopedBy,
+  Footer,
+  ForYou,
+  Header,
+  HeaderWrapper,
+  ListWrapper,
+  MainWrapper,
+  ProfilePicture,
+  Promo,
+  PromoBooks,
+  SocialMedia
+} from "./styles";
 import MangoLogo from "../../../assets/header/logo.svg"
 import ByronLogo from "../../../assets/footer/logo-byron.svg"
 import SearchField from "../../components/SearchField";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import theme from "../../global/styles/theme";
 import SocialIcon from "../../components/SocialIcon";
-import CarouselItem from "../../components/CarouselItem";
 import HighlightCarousel from "../../components/HighlightCarousel";
+import BookCard from "../../components/BookCard";
+import api from "../../services/api";
+
+interface BookProps {
+  autor: string,
+  capa: string,
+  estoque: number,
+  id: number,
+  titulo: string,
+  valor: number
+}
+
+interface BookResponse {
+  data: BookProps[],
+  msg: string
+}
 
 export default function Home() {
+  const [bookList, setBookList] = useState<BookProps[]>([]);
+
+  const fetchBooks = async () => {
+    const response = await api.get<BookResponse>("/livros/");
+
+    const data = response.data.data
+
+    setBookList(data);
+  }
+  useEffect(() => {
+    fetchBooks();
+  }, [])
+
+  const randomIndex = (tamanho: number) => {
+    const list = new Set<number>();
+
+    while (list.size < tamanho) {
+      const numeroAleatorio = Math.floor(Math.random() * 36);
+      list.add(numeroAleatorio);
+    }
+    return Array.from<number>(list);
+  }
+
+
   return (
-    <View>
+    <ScrollView>
       {/* Header */}
       <ImageBackground source={require("../../../assets/background/bg-yellow.png")}>
         <HeaderWrapper>
@@ -32,6 +85,51 @@ export default function Home() {
         <MainWrapper>
 
           <HighlightCarousel />
+
+          {/* Promoções */}
+          <Promo style={{
+            borderTopWidth: 2,
+            borderBottomWidth: 2
+          }}>
+            <CustomText style={{ marginBottom: 8 }} color={theme.colors.shape} fontsize={16}>
+              Em Promoção!
+            </CustomText>
+
+            <PromoBooks>
+              <BookCard promo index={3} data={bookList} />
+              <BookCard promo index={6} data={bookList} />
+              <BookCard promo index={7} data={bookList} />
+            </PromoBooks>
+          </Promo>
+
+          {/* Para você */}
+          <ForYou>
+            <ListWrapper
+              style={{
+                borderTopWidth: 2
+              }}
+            >
+              <CustomText style={{ marginBottom: 8 }} color={theme.colors.shape} fontsize={16}>
+                Para Você!
+              </CustomText>
+
+              <PromoBooks style={{
+                flexWrap: "wrap",
+                rowGap: 4
+              }}>
+                {randomIndex(6).map((value, index) => {
+                  return (
+                    <BookCard
+                      key={index}
+                      index={value}
+                      data={bookList}
+                    />
+                  )
+                })}
+              </PromoBooks>
+
+            </ListWrapper>
+          </ForYou>
 
         </MainWrapper>
       </ImageBackground>
@@ -58,6 +156,6 @@ export default function Home() {
           <ByronLogo />
         </DevelopedBy>
       </Footer>
-    </View>
+    </ScrollView>
   )
 };
