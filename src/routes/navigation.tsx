@@ -12,7 +12,7 @@ export default function Navigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Product"
+        initialRouteName="Home"
         screenOptions={{
           headerTitle: '',
           headerShown: false

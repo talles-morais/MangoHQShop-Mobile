@@ -1,4 +1,4 @@
-import { ImageBackground, Text, View } from "react-native";
+import { ImageBackground, Text, TouchableOpacity } from "react-native";
 import { BookAuthor, BookDesc, BookTitle, CardWrapper, Cover, CoverWrapper, NormalPrice, OldPrice, Price, PromoPrice } from "./styles";
 
 interface BookProps {
@@ -14,9 +14,10 @@ interface BookCardProps {
   promo?: boolean,
   data: BookProps[],
   index: number,
+  onPress: () => void,
 }
 
-export default function BookCard({ promo, data, index}: BookCardProps) {
+export default function BookCard({ promo, data, index, onPress}: BookCardProps) {
   if (!data || index >= data.length) {
     return <Text>Invalid data or index out of bounds</Text>;
   }
@@ -31,8 +32,7 @@ export default function BookCard({ promo, data, index}: BookCardProps) {
   };
 
   return (
-    <View>
-
+    <TouchableOpacity onPress={onPress}>
       <ImageBackground source={require("../../../assets/background/bg-white.png")}>
         <CardWrapper promo >
           <CoverWrapper style={{ borderBottomWidth: 1 }}>
@@ -62,6 +62,6 @@ export default function BookCard({ promo, data, index}: BookCardProps) {
           </BookDesc>
         </CardWrapper>
       </ImageBackground>
-    </View>
+    </TouchableOpacity>
   )
 };

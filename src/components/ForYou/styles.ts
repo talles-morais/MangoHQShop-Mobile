@@ -1,4 +1,3 @@
-import { RFValue } from "react-native-responsive-fontsize";
 import { DefaultTheme } from "styled-components/dist/types";
 import styled from "styled-components/native";
 

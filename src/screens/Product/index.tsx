@@ -13,12 +13,13 @@ import {
   LearnMore
 } from "./styles";
 import { CustomText, MainWrapper } from "../Home/styles";
-import { ImageBackground } from "react-native";
+import { ImageBackground, Text } from "react-native";
 import AddToCartButton from "../../components/AddToCartButton";
 import api from "../../services/api";
 import { useEffect, useState } from "react";
 import ForYou from "../../components/ForYou";
 import theme from "../../global/styles/theme";
+import { NavigationProp, RouteProp, useRoute } from "@react-navigation/native";
 
 interface BookProps {
   autor: string,
@@ -34,8 +35,21 @@ interface BookResponse {
   msg: string
 }
 
-export default function Product() {
+interface ProductProps {
+  navigation: NavigationProp<any>;
+}
+
+type RootStackParamList = {
+  Product: { produto: BookProps }; // Define a rota "Product" e os parâmetros esperados
+};
+
+type ProductScreenRouteProp = RouteProp<RootStackParamList, 'Product'>;
+
+export default function Product({navigation} : ProductProps) {
   const [BookList, setBookList] = useState<BookProps[]>([]);
+  const route = useRoute<ProductScreenRouteProp>();
+  const produto = route.params?.produto;
+
   const fetchBooks = async () => {
     const response = await api.get<BookResponse>("/livros/");
 
@@ -47,20 +61,29 @@ export default function Product() {
     fetchBooks();
   }, [])
 
+  const handleClickProduct = (book: BookProps) => {
+    navigation.navigate("Product", { produto: book})
+  }
+
+  if (!produto ) {
+    
+    return <Text>Parametros não recebidos</Text>
+  }
+
   return (
     <ScrollView>
-      <SimpleHeader />
+      <SimpleHeader backTo="Home" navigation={navigation}/>
 
       <ImageBackground source={require("../../../assets/background/bg-white.png")}>
 
       <ProductMainWrapper >
         <ProductWrapper>
-          <ProductTitle>Titulo</ProductTitle>
-          <ProductAuthor>Autor</ProductAuthor>
+          <ProductTitle>{produto.titulo}</ProductTitle>
+          <ProductAuthor>{produto.autor}</ProductAuthor>
 
-          <ProductCover source={require("../../../assets/home/highlight.png")} />
-          <Stock>disponivel</Stock>
-          <ProductPrice>R$ 50,00</ProductPrice>
+          <ProductCover source={{uri : produto.capa}} />
+          <Stock>{produto.estoque ? "Em estoque!" : "Sem estoque!"}</Stock>
+          <ProductPrice> {`R$ ${produto.valor},00`} </ProductPrice>
 
           <AddToCartButton />
         </ProductWrapper>
@@ -87,7 +110,7 @@ export default function Product() {
 
         </ProductDescriptionWrapper>
 
-        <ForYou length={3} booklist={BookList}/>
+        <ForYou onPress={handleClickProduct} length={3} booklist={BookList}/>
       </ProductMainWrapper>
       </ImageBackground>
 

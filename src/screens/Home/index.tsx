@@ -1,9 +1,10 @@
-import { ImageBackground, ScrollView, Text, View } from "react-native";
+import { ImageBackground, ScrollView, Text } from "react-native";
 import {
   CustomText,
   DecorLine,
   DevelopedBy,
   Footer,
+  ForYouWrapper,
   Header,
   HeaderWrapper,
   MainWrapper,
@@ -22,6 +23,7 @@ import HighlightCarousel from "../../components/HighlightCarousel";
 import BookCard from "../../components/BookCard";
 import api from "../../services/api";
 import ForYou from "../../components/ForYou";
+import { NavigationProp } from "@react-navigation/native";
 
 interface BookProps {
   autor: string,
@@ -37,7 +39,11 @@ interface BookResponse {
   msg: string
 }
 
-export default function Home() {
+interface HomeProps {
+  navigation: NavigationProp<any>;
+}
+
+export default function Home({navigation} : HomeProps) {
   const [BookList, setBookList] = useState<BookProps[]>([]);
 
   const fetchBooks = async () => {
@@ -51,7 +57,9 @@ export default function Home() {
     fetchBooks();
   }, [])
 
-
+  const handleClickProduct = (book: BookProps) => {
+    navigation.navigate("Product", { produto: book})
+  }
 
   return (
     <ScrollView>
@@ -86,14 +94,16 @@ export default function Home() {
             </CustomText>
 
             <PromoBooks>
-              <BookCard promo index={3} data={BookList} />
-              <BookCard promo index={6} data={BookList} />
-              <BookCard promo index={7} data={BookList} />
+              <BookCard onPress={() => handleClickProduct(BookList[3])} promo index={3} data={BookList} />
+              <BookCard onPress={() => handleClickProduct(BookList[6])} promo index={6} data={BookList} />
+              <BookCard onPress={() => handleClickProduct(BookList[7])} promo index={7} data={BookList} />
             </PromoBooks>
           </Promo>
 
           {/* Para você */}
-          <ForYou length={6} booklist={BookList}/>
+          <ForYouWrapper>
+            <ForYou onPress={handleClickProduct} length={6} booklist={BookList}/>
+          </ForYouWrapper>
 
         </MainWrapper>
       </ImageBackground>

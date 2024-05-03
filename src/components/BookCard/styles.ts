@@ -1,7 +1,7 @@
 import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 
-export const CardWrapper = styled.TouchableOpacity<{ promo?: boolean }>`
+export const CardWrapper = styled.View<{ promo?: boolean }>`
   border: ${(props) => (props.promo ? RFValue(1) + "px solid" : "none")};
   align-items: center;
   width: ${RFValue(98)}px;

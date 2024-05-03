@@ -14,10 +14,11 @@ interface BookProps {
 
 interface ForYouProps {
   booklist: BookProps[],
-  length: number
+  length: number,
+  onPress: (book: BookProps) => void,
 }
 
-export default function ForYou({booklist, length} : ForYouProps) {
+export default function ForYou({booklist, length, onPress} : ForYouProps) {
   const randomIndex = (tamanho: number) => {
     const list = new Set<number>();
 
@@ -43,11 +44,12 @@ export default function ForYou({booklist, length} : ForYouProps) {
           flexWrap: "wrap",
           rowGap: 4
         }}>
-          {randomIndex(length).map((value, index) => {
+          {booklist.slice(0, length).map((book, index) => {
             return (
               <BookCard
-                key={`book-${index}`}
-                index={value}
+                onPress={() => onPress(book)}
+                key={book.id}
+                index={index}
                 data={booklist}
               />
             )

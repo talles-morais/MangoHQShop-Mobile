@@ -58,6 +58,10 @@ export const BookList = styled.FlatList`
 
 `
 
+export const ForYouWrapper = styled.View`
+  padding: ${RFValue(24)}px ${RFValue(16)}px;
+`
+
 export const Footer = styled.View<{ theme: DefaultTheme }>`
   background-color: ${({ theme }) => theme.colors.secondary_light};
   justify-content: center;

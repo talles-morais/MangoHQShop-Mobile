@@ -16,6 +16,7 @@ export const ProductWrapper= styled.View`
 export const ProductTitle = styled.Text<{theme : DefaultTheme}>`
   font-family: ${({theme}) => theme.fonts.bold};
   font-size: ${RFValue(16)}px;
+  text-align: center;
 `
 export const ProductAuthor = styled.Text<{theme : DefaultTheme}>`
   font-family: ${({theme}) => theme.fonts.regular};
