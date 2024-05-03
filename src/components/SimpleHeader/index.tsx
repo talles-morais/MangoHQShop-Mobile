@@ -25,7 +25,7 @@ export default function SimpleHeader({ backTo, navigation, cart, title, children
 
           <Group>
             {!cart &&
-              <GoTo>
+              <GoTo onPress={() => navigation.navigate("Cart")}>
                 <Icon source={require("../../../assets/product/cart.png")} />
               </GoTo>
             }

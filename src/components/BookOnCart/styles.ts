@@ -14,7 +14,8 @@ export const BookOnCartWrapper = styled.View`
 export const BookInfo = styled.View`
   flex-direction: row;
   align-items: center;
-  `
+  max-width: 50%;
+`
 
 export const BookInfoText = styled.View`
   margin-left: ${RFValue(12)}px;

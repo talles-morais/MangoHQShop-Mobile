@@ -1,6 +1,6 @@
 import { ScrollView } from "react-native-gesture-handler";
 import SimpleHeader from "../../components/SimpleHeader";
-import { 
+import {
   ProductWrapper,
   ProductTitle,
   ProductAuthor,
@@ -45,7 +45,7 @@ type RootStackParamList = {
 
 type ProductScreenRouteProp = RouteProp<RootStackParamList, 'Product'>;
 
-export default function Product({navigation} : ProductProps) {
+export default function Product({ navigation }: ProductProps) {
   const [BookList, setBookList] = useState<BookProps[]>([]);
   const route = useRoute<ProductScreenRouteProp>();
   const produto = route.params?.produto;
@@ -62,56 +62,56 @@ export default function Product({navigation} : ProductProps) {
   }, [])
 
   const handleClickProduct = (book: BookProps) => {
-    navigation.navigate("Product", { produto: book})
+    navigation.navigate("Product", { produto: book })
   }
 
-  if (!produto ) {
-    
+  if (!produto) {
+
     return <Text>Parametros não recebidos</Text>
   }
 
   return (
     <ScrollView>
-      <SimpleHeader title="Produto" backTo="Home" navigation={navigation}/>
+      <SimpleHeader title="Produto" backTo="Home" navigation={navigation} />
 
       <ImageBackground source={require("../../../assets/background/bg-white.png")}>
 
-      <ProductMainWrapper >
-        <ProductWrapper>
-          <ProductTitle>{produto.titulo}</ProductTitle>
-          <ProductAuthor>{produto.autor}</ProductAuthor>
+        <ProductMainWrapper >
+          <ProductWrapper>
+            <ProductTitle>{produto.titulo}</ProductTitle>
+            <ProductAuthor>{produto.autor}</ProductAuthor>
 
-          <ProductCover source={{uri : produto.capa}} />
-          <Stock>{produto.estoque ? "Em estoque!" : "Sem estoque!"}</Stock>
-          <ProductPrice> {`R$ ${produto.valor},00`} </ProductPrice>
+            <ProductCover source={{ uri: produto.capa }} />
+            <Stock>{produto.estoque ? "Em estoque!" : "Sem estoque!"}</Stock>
+            <ProductPrice> {`R$ ${produto.valor},00`} </ProductPrice>
 
-          <AddToCartButton />
-        </ProductWrapper>
+            <AddToCartButton data={produto}/>
+          </ProductWrapper>
 
-        <ProductDescriptionWrapper
-          style={{
-            borderTopWidth: 2
-          }}
-        >
-          <CustomText color={theme.colors.shape} fontsize={16}>
-            Descrição do livro
-          </CustomText>
-
-          <ProductDescription>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, itaque facere ipsam iusto qui autem minima quia eveniet voluptates, numquam consectetur facilis illum est ad blanditiis amet voluptatum! Alias, doloribus!
-          </ProductDescription>
-
-          <LearnMore>
-            <CustomText color={theme.colors.shape} fontsize={12}>
-              Para saber mais do livro: 
+          <ProductDescriptionWrapper
+            style={{
+              borderTopWidth: 2
+            }}
+          >
+            <CustomText color={theme.colors.shape} fontsize={16}>
+              Descrição do livro
             </CustomText>
-            <AddToCartButton />
-          </LearnMore>
 
-        </ProductDescriptionWrapper>
+            <ProductDescription>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, itaque facere ipsam iusto qui autem minima quia eveniet voluptates, numquam consectetur facilis illum est ad blanditiis amet voluptatum! Alias, doloribus!
+            </ProductDescription>
 
-        <ForYou onPress={handleClickProduct} length={3} booklist={BookList}/>
-      </ProductMainWrapper>
+            <LearnMore>
+              <CustomText color={theme.colors.shape} fontsize={12}>
+                Para saber mais do livro:
+              </CustomText>
+              <AddToCartButton data={produto}/>
+            </LearnMore>
+
+          </ProductDescriptionWrapper>
+
+          <ForYou onPress={handleClickProduct} length={3} booklist={BookList} />
+        </ProductMainWrapper>
       </ImageBackground>
 
     </ScrollView>

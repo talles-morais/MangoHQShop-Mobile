@@ -1,5 +1,7 @@
 import 'react-native-gesture-handler';
 import { ThemeProvider } from 'styled-components/native';
+import { CartProvider, useCart } from './src/hooks/cart';
+
 import theme from './src/global/styles/theme';
 import { 
   useFonts, 
@@ -27,7 +29,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Navigation/>
+      <CartProvider>
+        <Navigation/> 
+      </CartProvider>
     </ThemeProvider>
   );
 }

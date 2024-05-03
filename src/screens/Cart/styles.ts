@@ -10,6 +10,11 @@ export const MyCart = styled.View`
   align-items: center;
   gap: ${RFValue(8)}px;
 `
+
+export const BookListWrapper = styled.View`
+  width: 100%;
+`
+
 export const CartTitle = styled.Text`
 
 `

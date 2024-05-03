@@ -1,7 +1,7 @@
 import { NavigationProp } from "@react-navigation/native";
 import SimpleHeader from "../../components/SimpleHeader";
 import SearchField from "../../components/SearchField";
-import { ImageBackground, ScrollView, Text } from "react-native";
+import { FlatList, ImageBackground, ScrollView, Text } from "react-native";
 import ForYou from "../../components/ForYou";
 import { BuyButton, BuyMoreButton, BuyText, CartMainWrapper, CartTitle, Icon, MyCart, ShoppingActions } from "./styles";
 import BookOnCart from "../../components/BookOnCart";
@@ -10,6 +10,7 @@ import theme from "../../global/styles/theme";
 import AddToCartButton from "../../components/AddToCartButton";
 import { useEffect, useState } from "react";
 import api from "../../services/api";
+import { useCart } from "../../hooks/cart";
 
 interface CartProps {
   navigation: NavigationProp<any>;
@@ -34,7 +35,8 @@ interface ProductProps {
 }
 
 export default function Cart({navigation} : CartProps) {
-  const [BookList, setBookList] = useState<BookProps[]>([]);
+  const [BookList, setBookList] = useState<BookProps[]>([])
+  const cartSelection = useCart();
 
   const fetchBooks = async () => {
     const response = await api.get<BookResponse>("/livros/");
@@ -64,12 +66,12 @@ export default function Cart({navigation} : CartProps) {
             <CustomText fontsize={16} color={theme.colors.shape}>Meu Carrinho</CustomText>
             <Text>Livros:</Text>
 
-            <BookOnCart />
-            <BookOnCart />
-            <BookOnCart />
+            { cartSelection?.cartItems.map((value) => (
+              <BookOnCart key={value.id} data={value}/>
+            ))}
 
             <ShoppingActions>
-              <BuyMoreButton>
+              <BuyMoreButton onPress={() => navigation.navigate("Home")}>
                 <Icon name="arrow-back"/>
                 <BuyText>Comprar mais</BuyText>
               </BuyMoreButton>
