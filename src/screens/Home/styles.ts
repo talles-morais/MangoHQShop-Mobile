@@ -54,16 +54,6 @@ export const PromoBooks = styled.View<{ theme: DefaultTheme }>`
   justify-content: space-evenly;
 `
 
-export const ForYou = styled.View`
-  width: 100%;
-  padding: ${RFValue(24)}px ${RFValue(16)}px;
-`
-
-export const ListWrapper = styled.View`
-  width: 100%;
-  align-items: center;
-`
-
 export const BookList = styled.FlatList`
 
 `
@@ -77,7 +67,7 @@ export const Footer = styled.View<{ theme: DefaultTheme }>`
 
 export const CustomText = styled.Text<{ color?: string; fontsize?: number }>`
   color: ${(props) => props.color || "#FFF"};
-  font-size: ${(props) => props.fontsize || 12}px;
+  font-size: ${(props) => RFValue(props.fontsize || 12)}px;
 
   font-family: ${({ theme }) => theme.fonts.bold};
 `;

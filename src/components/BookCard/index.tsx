@@ -14,10 +14,9 @@ interface BookCardProps {
   promo?: boolean,
   data: BookProps[],
   index: number,
-  key?: number
 }
 
-export default function BookCard({ promo, data, index, key }: BookCardProps) {
+export default function BookCard({ promo, data, index}: BookCardProps) {
   if (!data || index >= data.length) {
     return <Text>Invalid data or index out of bounds</Text>;
   }
@@ -32,7 +31,7 @@ export default function BookCard({ promo, data, index, key }: BookCardProps) {
   };
 
   return (
-    <View key={key}>
+    <View>
 
       <ImageBackground source={require("../../../assets/background/bg-white.png")}>
         <CardWrapper promo >

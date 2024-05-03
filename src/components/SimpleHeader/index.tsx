@@ -1,7 +1,6 @@
 import { ImageBackground, Text } from "react-native";
 import { Header, ProfilePicture } from "../../screens/Home/styles";
-import { SimpleHeaderWrapper, ScreenTitle, Cart, Group, GoTo } from "./styles"
-import { BackTo } from "./styles";
+import { SimpleHeaderWrapper, ScreenTitle, Group, GoTo, Icon } from "./styles"
 
 export default function SimpleHeader() {
   return (
@@ -10,14 +9,14 @@ export default function SimpleHeader() {
         <Header>
           <Group >
             <GoTo>
-              <BackTo name="arrow-back-sharp" />
+              <Icon source={require("../../../assets/product/back.png")} />
             </GoTo>
             <ScreenTitle>Produto</ScreenTitle>
           </Group>
 
           <Group>
             <GoTo>
-              <Cart name="cart-outline" />
+              <Icon source={require("../../../assets/product/cart.png")} />
             </GoTo>
             <ProfilePicture>
               <Text>profile</Text>

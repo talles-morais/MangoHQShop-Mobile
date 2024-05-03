@@ -4,10 +4,8 @@ import {
   DecorLine,
   DevelopedBy,
   Footer,
-  ForYou,
   Header,
   HeaderWrapper,
-  ListWrapper,
   MainWrapper,
   ProfilePicture,
   Promo,
@@ -23,6 +21,7 @@ import SocialIcon from "../../components/SocialIcon";
 import HighlightCarousel from "../../components/HighlightCarousel";
 import BookCard from "../../components/BookCard";
 import api from "../../services/api";
+import ForYou from "../../components/ForYou";
 
 interface BookProps {
   autor: string,
@@ -39,7 +38,7 @@ interface BookResponse {
 }
 
 export default function Home() {
-  const [bookList, setBookList] = useState<BookProps[]>([]);
+  const [BookList, setBookList] = useState<BookProps[]>([]);
 
   const fetchBooks = async () => {
     const response = await api.get<BookResponse>("/livros/");
@@ -52,15 +51,6 @@ export default function Home() {
     fetchBooks();
   }, [])
 
-  const randomIndex = (tamanho: number) => {
-    const list = new Set<number>();
-
-    while (list.size < tamanho) {
-      const numeroAleatorio = Math.floor(Math.random() * 36);
-      list.add(numeroAleatorio);
-    }
-    return Array.from<number>(list);
-  }
 
 
   return (
@@ -96,40 +86,14 @@ export default function Home() {
             </CustomText>
 
             <PromoBooks>
-              <BookCard promo index={3} data={bookList} />
-              <BookCard promo index={6} data={bookList} />
-              <BookCard promo index={7} data={bookList} />
+              <BookCard promo index={3} data={BookList} />
+              <BookCard promo index={6} data={BookList} />
+              <BookCard promo index={7} data={BookList} />
             </PromoBooks>
           </Promo>
 
           {/* Para você */}
-          <ForYou>
-            <ListWrapper
-              style={{
-                borderTopWidth: 2
-              }}
-            >
-              <CustomText style={{ marginBottom: 8 }} color={theme.colors.shape} fontsize={16}>
-                Para Você!
-              </CustomText>
-
-              <PromoBooks style={{
-                flexWrap: "wrap",
-                rowGap: 4
-              }}>
-                {randomIndex(6).map((value, index) => {
-                  return (
-                    <BookCard
-                      key={index}
-                      index={value}
-                      data={bookList}
-                    />
-                  )
-                })}
-              </PromoBooks>
-
-            </ListWrapper>
-          </ForYou>
+          <ForYou length={6} booklist={BookList}/>
 
         </MainWrapper>
       </ImageBackground>

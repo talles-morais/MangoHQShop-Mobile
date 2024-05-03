@@ -15,22 +15,17 @@ export const Group = styled.View<{theme : DefaultTheme}>`
 `
 
 export const GoTo = styled.TouchableOpacity`
-  
+
 `
 
-export const BackTo = styled(Ionicons)`
-  font-size: ${RFValue(24)}px;
-  color: ${({theme}) => theme.colors.secondary};
-`
-
-export const Cart = styled(Ionicons)`
-  font-size: ${RFValue(24)}px;
-  color: ${({theme}) => theme.colors.secondary};
+export const Icon = styled.Image`
+  width: ${RFValue(20)}px;
+  height: ${RFValue(20)}px;
 `
 
 export const ScreenTitle = styled.Text<{theme : DefaultTheme}>`
   font-family: ${({theme}) => theme.fonts.regular};
-  font-size: ${RFValue(12)}px;
+  font-size: ${RFValue(16)}px;
 `
 
 export const ProfilePicture = styled.View<{theme : DefaultTheme}>`
