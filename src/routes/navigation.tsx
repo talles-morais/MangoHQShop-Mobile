@@ -5,6 +5,7 @@ import Home from "../screens/Home";
 import Login from "../screens/Login";
 import Signup from "../screens/Signup";
 import Product from "../screens/Product";
+import Cart from "../screens/Cart";
 
 const Stack = createStackNavigator();
 
@@ -12,7 +13,7 @@ export default function Navigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName="Cart"
         screenOptions={{
           headerTitle: '',
           headerShown: false
@@ -22,6 +23,7 @@ export default function Navigation() {
         <Stack.Screen name="Signup" component={Signup}/>
         <Stack.Screen name="Home" component={Home}/>
         <Stack.Screen name="Product" component={Product} />
+        <Stack.Screen name="Cart" component={Cart}/>
       </Stack.Navigator>
     </NavigationContainer>
   )

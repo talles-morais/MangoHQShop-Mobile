@@ -4,11 +4,14 @@ import { SimpleHeaderWrapper, ScreenTitle, Group, GoTo, Icon } from "./styles"
 import { NavigationProp } from "@react-navigation/native";
 
 interface HeaderProps {
+  title: string,
+  cart?: boolean,
   backTo: string,
-  navigation: NavigationProp<any>;
+  navigation: NavigationProp<any>,
+  children?: React.JSX.Element,
 }
 
-export default function SimpleHeader({backTo, navigation} : HeaderProps) {
+export default function SimpleHeader({ backTo, navigation, cart, title, children }: HeaderProps) {
   return (
     <ImageBackground source={require("../../../assets/background/bg-yellow.png")}>
       <SimpleHeaderWrapper>
@@ -17,18 +20,21 @@ export default function SimpleHeader({backTo, navigation} : HeaderProps) {
             <GoTo onPress={() => navigation.navigate(backTo)}>
               <Icon source={require("../../../assets/product/back.png")} />
             </GoTo>
-            <ScreenTitle>Produto</ScreenTitle>
+            <ScreenTitle>{title}</ScreenTitle>
           </Group>
 
           <Group>
-            <GoTo>
-              <Icon source={require("../../../assets/product/cart.png")} />
-            </GoTo>
+            {!cart &&
+              <GoTo>
+                <Icon source={require("../../../assets/product/cart.png")} />
+              </GoTo>
+            }
             <ProfilePicture>
               <Text>profile</Text>
             </ProfilePicture>
           </Group>
         </Header>
+        {children}
       </SimpleHeaderWrapper>
     </ImageBackground>
   )
