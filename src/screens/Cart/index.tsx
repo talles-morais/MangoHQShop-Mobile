@@ -51,8 +51,9 @@ export default function Cart({navigation} : CartProps) {
 
   const handleFinishShopping = async () => {
     const response = await api.put("/carrinho/finalizar", cartSelection?.cartItems)
-    console.log(response.status);
-
+    if(response.status == 200){
+      navigation.navigate("OrderConfirmation")
+    }
   }
 
 
