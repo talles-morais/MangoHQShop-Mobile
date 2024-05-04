@@ -66,7 +66,6 @@ export default function SignUp({ navigation }: SignInProps) {
       Alert.alert("Usuario cadastrado com sucesso!");
       navigation.navigate("Home");
     }
-    console.log(resp.data);
   }
 
   return (
