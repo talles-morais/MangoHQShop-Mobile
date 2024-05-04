@@ -11,6 +11,7 @@ import AddToCartButton from "../../components/AddToCartButton";
 import { useEffect, useState } from "react";
 import api from "../../services/api";
 import { useCart } from "../../hooks/cart";
+import { useAuth } from "../../hooks/auth";
 
 interface CartProps {
   navigation: NavigationProp<any>;
@@ -33,6 +34,7 @@ interface BookResponse {
 export default function Cart({navigation} : CartProps) {
   const [BookList, setBookList] = useState<BookProps[]>([])
   const cartSelection = useCart();
+  const user = useAuth();
 
   const fetchBooks = async () => {
     const response = await api.get<BookResponse>("/livros/");
@@ -50,10 +52,20 @@ export default function Cart({navigation} : CartProps) {
   }
 
   const handleFinishShopping = async () => {
-    const response = await api.put("/carrinho/finalizar", cartSelection?.cartItems)
-    if(response.status == 200){
-      navigation.navigate("OrderConfirmation")
-    }
+    navigation.navigate("OrderConfirmation")
+    cartSelection?.cartItems.forEach((item) => {
+      cartSelection.removeItem(item.id)
+    })
+
+    // const response = await api.put("/carrinho/finalizar", {
+    //   id: user?.userLogged.id,
+    // } , {
+    //   headers: {
+    //     Authorization: `Bearer ${user?.userLogged.token}`
+    //   }
+    // })
+    // if(response.status == 200){
+    // }
   }
 
 

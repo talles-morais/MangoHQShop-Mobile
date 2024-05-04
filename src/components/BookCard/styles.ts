@@ -34,6 +34,7 @@ export const BookTitle = styled.Text`
 export const BookAuthor = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${RFValue(12)}px;
+  text-align: center;
 `;
 
 export const Price = styled.View`

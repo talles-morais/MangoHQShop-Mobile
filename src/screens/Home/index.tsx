@@ -95,9 +95,9 @@ export default function Home({navigation} : HomeProps) {
             </CustomText>
 
             <PromoBooks>
-              <BookCard onPress={() => handleClickProduct(BookList[3])} promo index={3} data={BookList} />
-              <BookCard onPress={() => handleClickProduct(BookList[6])} promo index={6} data={BookList} />
-              <BookCard onPress={() => handleClickProduct(BookList[7])} promo index={7} data={BookList} />
+              <BookCard onPress={() => handleClickProduct(BookList[13])} promo index={13} data={BookList} />
+              <BookCard onPress={() => handleClickProduct(BookList[31])} promo index={31} data={BookList} />
+              <BookCard onPress={() => handleClickProduct(BookList[35])} promo index={35} data={BookList} />
             </PromoBooks>
           </Promo>
 

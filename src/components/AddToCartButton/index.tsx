@@ -28,7 +28,7 @@ export default function AddToCartButton({ data } : BookProps) {
     onCart?.addItem(book)
     // const resp = await api.put("/carrinho/adicionar/", {
     //   id: user?.userLogged.id,
-    //   livro: book
+    //   livro: [book]
     // }, {
     //   headers: {
     //     "Content-Type": "application/json",
@@ -36,7 +36,6 @@ export default function AddToCartButton({ data } : BookProps) {
     //   }
     // })
     // console.log(resp.status);
-    
   }
 
   return (

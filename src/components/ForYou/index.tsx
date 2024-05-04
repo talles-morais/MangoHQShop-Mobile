@@ -38,12 +38,12 @@ export default function ForYou({ booklist, length, onPress }: ForYouProps) {
           flexWrap: "wrap",
           rowGap: 4
         }}>
-          {booklist.slice(0, length).map((book) => {
+          {booklist.map((book, i) => {
             return (
               <BookCard
                 onPress={() => onPress(book)}
                 key={book.id}
-                index={randomIndex()}
+                index={i}
                 data={booklist}
               />
             )
