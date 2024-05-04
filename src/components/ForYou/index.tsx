@@ -18,15 +18,9 @@ interface ForYouProps {
   onPress: (book: BookProps) => void,
 }
 
-export default function ForYou({booklist, length, onPress} : ForYouProps) {
-  const randomIndex = (tamanho: number) => {
-    const list = new Set<number>();
-
-    while (list.size < tamanho) {
-      const numeroAleatorio = Math.floor(Math.random() * 36);
-      list.add(numeroAleatorio);
-    }
-    return Array.from<number>(list);
+export default function ForYou({ booklist, length, onPress }: ForYouProps) {
+  const randomIndex = () => {
+    return Math.floor(Math.random() * 36);
   }
 
   return (
@@ -44,12 +38,12 @@ export default function ForYou({booklist, length, onPress} : ForYouProps) {
           flexWrap: "wrap",
           rowGap: 4
         }}>
-          {booklist.slice(0, length).map((book, index) => {
+          {booklist.slice(0, length).map((book) => {
             return (
               <BookCard
                 onPress={() => onPress(book)}
                 key={book.id}
-                index={index}
+                index={randomIndex()}
                 data={booklist}
               />
             )

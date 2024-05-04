@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 
 interface UserProps {
+  id: number,
   nome: string
   email: string
   telefone: string
@@ -11,6 +12,7 @@ interface UserProps {
 }
 
 const initialUserState: UserProps = {
+  id: 0,
   nome: "",
   email: "",
   telefone: "",

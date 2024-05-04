@@ -48,11 +48,12 @@ export default function Login({ navigation }: LoginProps) {
     const data = {
       email: form.email,
       senha: form.password,
-    }
-    
+    } 
 
     const resp = await api.post("/usuarios/login", data);
-    user?.login(resp.data)
+    const logged = { ...resp.data.data, token: resp.data.token }
+    
+    user?.login(logged)
     
     if(resp.status == 200)
       navigation.navigate("Home")

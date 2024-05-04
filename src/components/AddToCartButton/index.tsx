@@ -1,3 +1,4 @@
+import { useAuth } from "../../hooks/auth";
 import { useCart } from "../../hooks/cart";
 import api from "../../services/api";
 import { ButtonWrapper, BuyText, Icon } from "./styles";
@@ -16,6 +17,7 @@ interface BookProps {
 
 export default function AddToCartButton({ data } : BookProps) {
   const onCart = useCart();
+  const user = useAuth();
 
   const handleAddToCart = async () => {
     const book = {
@@ -24,11 +26,16 @@ export default function AddToCartButton({ data } : BookProps) {
     }
 
     onCart?.addItem(book)
-    const resp = await api.put("/carrinho/adicionar/", {
-      id: book.id,
-      livro: book
-    })
-    console.log(resp.status);
+    // const resp = await api.put("/carrinho/adicionar/", {
+    //   id: user?.userLogged.id,
+    //   livro: book
+    // }, {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Authorization: `Bearer ${user?.userLogged.token}`
+    //   }
+    // })
+    // console.log(resp.status);
     
   }
 

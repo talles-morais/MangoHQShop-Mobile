@@ -46,7 +46,6 @@ interface HomeProps {
 
 export default function Home({navigation} : HomeProps) {
   const [BookList, setBookList] = useState<BookProps[]>([]);
-  const userLogged = useAuth();
 
   const fetchBooks = async () => {
     const response = await api.get<BookResponse>("/livros/");
