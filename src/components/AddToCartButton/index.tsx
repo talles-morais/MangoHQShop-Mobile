@@ -1,4 +1,5 @@
 import { useCart } from "../../hooks/cart";
+import api from "../../services/api";
 import { ButtonWrapper, BuyText, Icon } from "./styles";
 
 interface BookProps {
@@ -16,15 +17,19 @@ interface BookProps {
 export default function AddToCartButton({ data } : BookProps) {
   const onCart = useCart();
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     const book = {
       ...data,
       quantity: data.quantity ?? 1
     }
 
     onCart?.addItem(book)
-    console.log(onCart);
-
+    const resp = await api.put("/carrinho/adicionar/", {
+      id: book.id,
+      livro: book
+    })
+    console.log(resp.status);
+    
   }
 
   return (

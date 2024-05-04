@@ -24,6 +24,7 @@ import BookCard from "../../components/BookCard";
 import api from "../../services/api";
 import ForYou from "../../components/ForYou";
 import { NavigationProp } from "@react-navigation/native";
+import { useAuth } from "../../hooks/auth";
 
 interface BookProps {
   autor: string,
@@ -45,6 +46,7 @@ interface HomeProps {
 
 export default function Home({navigation} : HomeProps) {
   const [BookList, setBookList] = useState<BookProps[]>([]);
+  const userLogged = useAuth();
 
   const fetchBooks = async () => {
     const response = await api.get<BookResponse>("/livros/");

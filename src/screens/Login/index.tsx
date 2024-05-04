@@ -15,6 +15,7 @@ import { ConnectText } from "../../components/OAuthSection/styles"
 import InputForm from "../../components/InputForm"
 
 import api from "../../services/api"
+import { useAuth } from "../../hooks/auth"
 
 interface LoginProps {
   navigation: NavigationProp<any>;
@@ -34,6 +35,7 @@ const schema = Yup.object().shape({
 })
 
 export default function Login({ navigation }: LoginProps) {
+  const user = useAuth();
   const {
     control,
     handleSubmit,
@@ -45,14 +47,16 @@ export default function Login({ navigation }: LoginProps) {
   const handleLogin: SubmitHandler<LoginInputs> = async (form) => {
     const data = {
       email: form.email,
-      password: form.password,
+      senha: form.password,
     }
+    
 
     const resp = await api.post("/usuarios/login", data);
+    user?.login(resp.data)
+    
     if(resp.status == 200)
       navigation.navigate("Home")
   
-    console.log(data);
   }
 
 

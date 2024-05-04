@@ -30,10 +30,6 @@ interface BookResponse {
   msg: string
 }
 
-interface ProductProps {
-  navigation: NavigationProp<any>;
-}
-
 export default function Cart({navigation} : CartProps) {
   const [BookList, setBookList] = useState<BookProps[]>([])
   const cartSelection = useCart();
@@ -51,6 +47,12 @@ export default function Cart({navigation} : CartProps) {
 
   const handleClickProduct = (book: BookProps) => {
     navigation.navigate("Product", { produto: book})
+  }
+
+  const handleFinishShopping = async () => {
+    const response = await api.put("/carrinho/finalizar", cartSelection?.cartItems)
+    console.log(response.status);
+
   }
 
 
@@ -76,7 +78,7 @@ export default function Cart({navigation} : CartProps) {
                 <BuyText>Comprar mais</BuyText>
               </BuyMoreButton>
 
-              <BuyButton>
+              <BuyButton onPress={handleFinishShopping}>
                 <Icon name="shopping-cart-checkout"/>
                 <BuyText>Finalizar Compra</BuyText>
               </BuyButton>

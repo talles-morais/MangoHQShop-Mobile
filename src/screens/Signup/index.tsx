@@ -54,8 +54,10 @@ export default function SignUp({ navigation }: SignInProps) {
       nome: form.name,
       email: form.email,
       telefone: form.phone,
+      role: false,
       senha: form.password,
-      confirmPassword: form.confirmPassword
+      confirmPassword: form.confirmPassword,
+      token: "",
     }
 
     const resp = await api.post("/usuarios/", data);
@@ -64,7 +66,7 @@ export default function SignUp({ navigation }: SignInProps) {
       Alert.alert("Usuario cadastrado com sucesso!");
       navigation.navigate("Home");
     }
-    console.log(resp);
+    console.log(resp.data);
   }
 
   return (
