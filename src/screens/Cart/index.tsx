@@ -3,11 +3,10 @@ import SimpleHeader from "../../components/SimpleHeader";
 import SearchField from "../../components/SearchField";
 import { FlatList, ImageBackground, ScrollView, Text } from "react-native";
 import ForYou from "../../components/ForYou";
-import { BuyButton, BuyMoreButton, BuyText, CartMainWrapper, CartTitle, Icon, MyCart, ShoppingActions } from "./styles";
+import { BuyButton, BuyMoreButton, BuyText, CartMainWrapper, Icon, MyCart, ShoppingActions } from "./styles";
 import BookOnCart from "../../components/BookOnCart";
 import { CustomText } from "../Home/styles";
 import theme from "../../global/styles/theme";
-import AddToCartButton from "../../components/AddToCartButton";
 import { useEffect, useState } from "react";
 import api from "../../services/api";
 import { useCart } from "../../hooks/cart";
@@ -52,20 +51,31 @@ export default function Cart({navigation} : CartProps) {
   }
 
   const handleFinishShopping = async () => {
-    navigation.navigate("OrderConfirmation")
-    cartSelection?.cartItems.forEach((item) => {
+    
+
+    const resp = await api.put("/carrinho/adicionar/", {
+      id: user?.userLogged.id,
+      livro: cartSelection?.cartItems
+    }, {
+      headers: {
+        Authorization: `Bearer ${user?.userLogged.token}`
+      }
+    })
+    console.log(resp.status);
+
+    const response = await api.put("/carrinho/finalizar", {
+      id: user?.userLogged.id,
+    } , {
+      headers: {
+        Authorization: `Bearer ${user?.userLogged.token}`
+      }
+    })
+    if(response.status == 200){
+      navigation.navigate("OrderConfirmation")
+      cartSelection?.cartItems.forEach((item) => {
       cartSelection.removeItem(item.id)
     })
-
-    // const response = await api.put("/carrinho/finalizar", {
-    //   id: user?.userLogged.id,
-    // } , {
-    //   headers: {
-    //     Authorization: `Bearer ${user?.userLogged.token}`
-    //   }
-    // })
-    // if(response.status == 200){
-    // }
+    }
   }
 
 
