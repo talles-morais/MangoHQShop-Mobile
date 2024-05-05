@@ -17,7 +17,6 @@ import { ActionWrapper, Form, LoginContainer, ScrollWrapper, Wrapper } from "../
 import theme from "../../global/styles/theme";
 import api from "../../services/api";
 import { useState } from "react";
-import { CountryAwarePhoneInput, usePhoneNumberInput } from "rn-phone-number-input";
 import PhoneInput from "../../components/PhoneInput";
 
 interface SignInProps {
@@ -40,11 +39,10 @@ const schema = Yup.object().shape({
     .required("E-mail é obrigatório!"),
   phone: Yup.string().required("Telefone é obrigatóri0!"),
   password: Yup.string().required("Senha é obrigatória!"),
-  confirmPassword: Yup.string().required("Confirmação de senha é obrigatória!")
+  confirmPassword: Yup.string().oneOf([Yup.ref('password'), undefined], "As senhas devem ser iguais").required("Confirmação de senha é obrigatória!")
 })
 
 export default function SignUp({ navigation }: SignInProps) {
-  const [phone, setPhone] = useState("")
   const {
     control,
     handleSubmit,
@@ -63,7 +61,6 @@ export default function SignUp({ navigation }: SignInProps) {
       confirmPassword: form.confirmPassword,
       token: "",
     }
-
     const resp = await api.post("/usuarios/", data);
 
     if(resp.status == 201){
@@ -71,11 +68,6 @@ export default function SignUp({ navigation }: SignInProps) {
       navigation.navigate("Home");
     }
   }
-
-  const inputManager = usePhoneNumberInput({
-    darkMode: false,
-    defaultCountry: 'BR', // if not set, defaults to 'US'
-  });
 
   return (
     <ImageBackground source={require("../../../assets/background/bg-yellow.png")}>
