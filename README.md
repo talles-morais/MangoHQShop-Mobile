@@ -24,10 +24,6 @@ A melhor loja de mangás e HQ's!
 - Axios
 
 
-## Rodando localmente
-
-Clone o projeto
-
 ## Para baixar o projeto:
 
 Clone o repositório
