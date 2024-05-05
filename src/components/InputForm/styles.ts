@@ -1,13 +1,16 @@
 import { RFValue } from "react-native-responsive-fontsize";
 import { DefaultTheme } from "styled-components/dist/types";
 import styled from "styled-components/native"; 
+import theme from "../../global/styles/theme";
 
 
 export const FormWrapper = styled.View`
   width: 100%;
 `
 
-export const Input = styled.TextInput`
+export const Input = styled.TextInput.attrs({
+  cursorColor: theme.colors.secondary
+})`
   width: 100%;
   background-color: #FFF;
   border-radius: 8px;

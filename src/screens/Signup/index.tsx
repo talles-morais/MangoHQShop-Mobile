@@ -16,6 +16,9 @@ import { Label } from "./styles";
 import { ActionWrapper, Form, LoginContainer, ScrollWrapper, Wrapper } from "../Login/styles";
 import theme from "../../global/styles/theme";
 import api from "../../services/api";
+import { useState } from "react";
+import { CountryAwarePhoneInput, usePhoneNumberInput } from "rn-phone-number-input";
+import PhoneInput from "../../components/PhoneInput";
 
 interface SignInProps {
   navigation: NavigationProp<any>;
@@ -41,6 +44,7 @@ const schema = Yup.object().shape({
 })
 
 export default function SignUp({ navigation }: SignInProps) {
+  const [phone, setPhone] = useState("")
   const {
     control,
     handleSubmit,
@@ -67,6 +71,11 @@ export default function SignUp({ navigation }: SignInProps) {
       navigation.navigate("Home");
     }
   }
+
+  const inputManager = usePhoneNumberInput({
+    darkMode: false,
+    defaultCountry: 'BR', // if not set, defaults to 'US'
+  });
 
   return (
     <ImageBackground source={require("../../../assets/background/bg-yellow.png")}>
@@ -113,7 +122,7 @@ export default function SignUp({ navigation }: SignInProps) {
                   </FormField>
                   <FormField>
                     <Label>Telefone:</Label>
-                    <InputForm
+                    <PhoneInput
                       name="phone"
                       control={control}
                       placeholder="(00) 00000-0000"
