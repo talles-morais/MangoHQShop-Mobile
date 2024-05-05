@@ -16,6 +16,8 @@ import { Label } from "./styles";
 import { ActionWrapper, Form, LoginContainer, ScrollWrapper, Wrapper } from "../Login/styles";
 import theme from "../../global/styles/theme";
 import api from "../../services/api";
+import { useState } from "react";
+import PhoneInput from "../../components/PhoneInput";
 
 interface SignInProps {
   navigation: NavigationProp<any>;
@@ -37,7 +39,7 @@ const schema = Yup.object().shape({
     .required("E-mail é obrigatório!"),
   phone: Yup.string().required("Telefone é obrigatóri0!"),
   password: Yup.string().required("Senha é obrigatória!"),
-  confirmPassword: Yup.string().required("Confirmação de senha é obrigatória!")
+  confirmPassword: Yup.string().oneOf([Yup.ref('password'), undefined], "As senhas devem ser iguais").required("Confirmação de senha é obrigatória!")
 })
 
 export default function SignUp({ navigation }: SignInProps) {
@@ -59,7 +61,6 @@ export default function SignUp({ navigation }: SignInProps) {
       confirmPassword: form.confirmPassword,
       token: "",
     }
-
     const resp = await api.post("/usuarios/", data);
 
     if(resp.status == 201){
@@ -113,7 +114,7 @@ export default function SignUp({ navigation }: SignInProps) {
                   </FormField>
                   <FormField>
                     <Label>Telefone:</Label>
-                    <InputForm
+                    <PhoneInput
                       name="phone"
                       control={control}
                       placeholder="(00) 00000-0000"

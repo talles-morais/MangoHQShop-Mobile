@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: 'http://capacitacao.byronsolutions.com:8000/'
+  baseURL: 'http://192.168.1.20:3000/'
 })
 
 export default api;
