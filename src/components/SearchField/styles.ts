@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons'
 import theme from "../../global/styles/theme";
 import { DefaultTheme } from "styled-components/dist/types";
 
-export const SearchBar = styled.View<{theme : DefaultTheme}>`
+export const SearchBar = styled.TouchableOpacity<{theme : DefaultTheme}>`
   width: 100%;
   background-color: ${({theme}) => theme.colors.background};
   flex-direction: row;

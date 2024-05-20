@@ -7,6 +7,7 @@ import Signup from "../screens/Signup";
 import Product from "../screens/Product";
 import Cart from "../screens/Cart";
 import OrderConfirmation from "../screens/OrderConfirmation";
+import Search from "../screens/Search";
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,7 @@ export default function Navigation() {
         <Stack.Screen name="Product" component={Product} />
         <Stack.Screen name="Cart" component={Cart}/>
         <Stack.Screen name="OrderConfirmation" component={OrderConfirmation}/>
+        <Stack.Screen name="Search" component={Search}/>
       </Stack.Navigator>
     </NavigationContainer>
   )

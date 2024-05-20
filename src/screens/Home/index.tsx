@@ -51,9 +51,7 @@ export default function Home({navigation} : HomeProps) {
     const response = await api.get<BookResponse>("/livros/");
 
     const data = response.data.data
-    console.log(data);
     
-
     setBookList(data);
   }
   useEffect(() => {
@@ -76,7 +74,9 @@ export default function Home({navigation} : HomeProps) {
             </ProfilePicture>
           </Header>
 
-          <SearchField />
+          <SearchField 
+            navigation={navigation}
+          />
         </HeaderWrapper>
       </ImageBackground>
       <DecorLine color={theme.colors.shape} />
