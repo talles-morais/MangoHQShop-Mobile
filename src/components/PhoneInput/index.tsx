@@ -1,7 +1,7 @@
 import React from 'react';
 import { Control, Controller, FieldValues, Path } from 'react-hook-form';
 import { Text, TextInputProps, View } from 'react-native';
-import { Input } from '../InputForm/styles';
+import { Input, Error } from '../InputForm/styles';
 
 // Função para formatar o número do telefone brasileiro
 const formatPhone = (value: string): string => {
@@ -48,9 +48,7 @@ const PhoneInput = <T extends FieldValues>({ control, name, error, ...rest }: Ph
           />
         )}
       />
-      {error && (
-        <Text style={{ color: 'red' }}>{error}</Text> // Use um componente de texto para mensagens de erro
-      )}
+      {error && <Error>{error}</Error>}
     </View>
   );
 };

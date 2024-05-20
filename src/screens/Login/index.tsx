@@ -31,7 +31,7 @@ const schema = Yup.object().shape({
     .string()
     .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, { message: "Digite um email válido" })
     .required("E-mail é obrigatório!"),
-  password: Yup.string().required("Nome é obrigatório!"),
+  password: Yup.string().required("Senha é obrigatória!"),
 })
 
 export default function Login({ navigation }: LoginProps) {

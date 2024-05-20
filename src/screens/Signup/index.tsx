@@ -18,6 +18,7 @@ import theme from "../../global/styles/theme";
 import api from "../../services/api";
 import { useState } from "react";
 import PhoneInput from "../../components/PhoneInput";
+import { useAuth } from "../../hooks/auth";
 
 interface SignInProps {
   navigation: NavigationProp<any>;
@@ -37,7 +38,7 @@ const schema = Yup.object().shape({
     .string()
     .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, { message: "Digite um email válido" })
     .required("E-mail é obrigatório!"),
-  phone: Yup.string().required("Telefone é obrigatóri0!"),
+  phone: Yup.string().required("Telefone é obrigatório!"),
   password: Yup.string().required("Senha é obrigatória!"),
   confirmPassword: Yup.string().oneOf([Yup.ref('password'), undefined], "As senhas devem ser iguais").required("Confirmação de senha é obrigatória!")
 })
@@ -50,6 +51,7 @@ export default function SignUp({ navigation }: SignInProps) {
   } = useForm<RegisterInputs>({
     resolver: yupResolver(schema)
   });
+  const user = useAuth();
 
   const handleRegister: SubmitHandler<RegisterInputs> = async (form) => {
     const data = {
@@ -62,6 +64,17 @@ export default function SignUp({ navigation }: SignInProps) {
       token: "",
     }
     const resp = await api.post("/usuarios/", data);
+
+    const userData = {
+      email: form.email,
+      senha: form.password,
+    } 
+
+    const loginResponse = await api.post("/usuarios/login", userData);
+    const logged = { ...loginResponse.data.data, token: loginResponse.data.token }
+    
+    user?.login(logged)
+    
 
     if(resp.status == 201){
       Alert.alert("Usuario cadastrado com sucesso!");
