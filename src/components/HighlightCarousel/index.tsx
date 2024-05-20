@@ -8,7 +8,7 @@ import Animated, {
 } from "react-native-reanimated";
 import Carousel from "react-native-reanimated-carousel";
 
-import CarouselItem  from "../CarouselItem";
+import CarouselItem from "../CarouselItem";
 import { RFValue } from "react-native-responsive-fontsize";
 import theme from "../../global/styles/theme";
 
@@ -22,38 +22,29 @@ const colors = [
 ];
 
 function HighlightCarousel() {
-  const [isVertical, setIsVertical] = React.useState(false);
-  const [autoPlay, setAutoPlay] = React.useState(false);
-  const [pagingEnabled, setPagingEnabled] = React.useState<boolean>(true);
-  const [snapEnabled, setSnapEnabled] = React.useState<boolean>(true);
   const progressValue = useSharedValue<number>(0);
-  const baseOptions = isVertical
-    ? ({
-      vertical: true,
-      width: PAGE_WIDTH * 0.86,
-      height: 1
-    } as const)
-    : ({
-      vertical: false,
-      width: RFValue(328),
-      height: RFValue(160),
-    } as const);
+  const baseOptions = ({
+    vertical: false,
+    width: RFValue(328),
+    height: RFValue(160),
+  } as const);
 
   return (
     <View
       style={{
         alignItems: "center",
+        height: baseOptions.height
       }}
     >
       <Carousel
         {...baseOptions}
         style={{
-           width: PAGE_WIDTH,
+          width: PAGE_WIDTH,
         }}
         loop
-        pagingEnabled={pagingEnabled}
-        snapEnabled={snapEnabled}
-        autoPlay={autoPlay}
+        pagingEnabled={true}
+        snapEnabled={true}
+        autoPlay={false}
         autoPlayInterval={1500}
         onProgressChange={(_, absoluteProgress) =>
           (progressValue.value = absoluteProgress)
@@ -69,24 +60,14 @@ function HighlightCarousel() {
       {!!progressValue && (
         <View
           style={
-            isVertical
-              ? {
-                flexDirection: "column",
-                justifyContent: "space-between",
-                width: 10,
-                alignSelf: "center",
-                position: "absolute",
-                right: 5,
-                top: 40,
-              }
-              : {
-                flexDirection: "row",
-                justifyContent: "space-between",
-                width: 50,
-                alignSelf: "center",
-                position: "absolute",
-                bottom: 15
-              }
+            {
+              flexDirection: "row",
+              justifyContent: "space-between",
+              width: 50,
+              alignSelf: "center",
+              position: "absolute",
+              bottom: 15
+            }
           }
         >
           {colors.map((backgroundColor, index) => {
@@ -96,7 +77,7 @@ function HighlightCarousel() {
                 animValue={progressValue}
                 index={index}
                 key={index}
-                isRotate={isVertical}
+                isRotate={false}
                 length={colors.length}
               />
             );

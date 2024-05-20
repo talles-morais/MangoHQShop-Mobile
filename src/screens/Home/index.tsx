@@ -51,6 +51,8 @@ export default function Home({navigation} : HomeProps) {
     const response = await api.get<BookResponse>("/livros/");
 
     const data = response.data.data
+    console.log(data);
+    
 
     setBookList(data);
   }
