@@ -1,13 +1,21 @@
+import { useEffect, useState } from "react";
+import { ImageBackground, ScrollView, Text } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
+import { 
+  BuyButton, 
+  BuyMoreButton, 
+  BuyText, 
+  CartMainWrapper, 
+  Icon, 
+  MyCart, 
+  ShoppingActions 
+} from "./styles";
 import SimpleHeader from "../../components/SimpleHeader";
 import SearchField from "../../components/SearchField";
-import { FlatList, ImageBackground, ScrollView, Text } from "react-native";
 import ForYou from "../../components/ForYou";
-import { BuyButton, BuyMoreButton, BuyText, CartMainWrapper, Icon, MyCart, ShoppingActions } from "./styles";
 import BookOnCart from "../../components/BookOnCart";
 import { CustomText } from "../Home/styles";
 import theme from "../../global/styles/theme";
-import { useEffect, useState } from "react";
 import api from "../../services/api";
 import { useCart } from "../../hooks/cart";
 import { useAuth } from "../../hooks/auth";
@@ -82,7 +90,9 @@ export default function Cart({navigation} : CartProps) {
   return (
     <ScrollView>
         <SimpleHeader title="Carrinho" cart backTo="Home" navigation={navigation}>
-          <SearchField />
+          <SearchField 
+            navigation={navigation}
+          />
         </SimpleHeader>
 
         <ImageBackground source={require("../../../assets/background/bg-white.png")} >

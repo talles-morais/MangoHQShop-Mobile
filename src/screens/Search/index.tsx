@@ -1,8 +1,9 @@
+import { useEffect, useState } from "react";
 import { NavigationProp } from "@react-navigation/native";
+
 import SimpleHeader from "../../components/SimpleHeader";
 import SearchField from "../../components/SearchField";
 import { SearchedContent } from "./styles";
-import { useEffect, useState } from "react";
 import api from "../../services/api";
 import BookCard from "../../components/BookCard";
 
@@ -24,16 +25,13 @@ interface BookResponse {
   msg: string
 }
 
-export default function Search({navigation} : SearchProps) {
+export default function Search({ navigation }: SearchProps) {
   const [BookList, setBookList] = useState<BookProps[]>([]);
+  const [searchInput, setSearchInput] = useState("");
 
   const fetchBooks = async () => {
     const response = await api.get<BookResponse>("/livros/");
-
     const data = response.data.data
-    console.log(data);
-    
-
     setBookList(data);
   }
   useEffect(() => {
@@ -41,23 +39,33 @@ export default function Search({navigation} : SearchProps) {
   }, [])
 
   const handleClickProduct = (book: BookProps) => {
-    navigation.navigate("Product", { produto: book})
+    navigation.navigate("Product", { produto: book })
   }
   return (
     <>
-      <SimpleHeader 
+      <SimpleHeader
         title="Resultados busca"
         backTo="Home"
         cart
         navigation={navigation}
       >
-        <SearchField 
+        <SearchField
           autofocus
           navigation={navigation}
+          onChangeText={setSearchInput}
         />
       </SimpleHeader>
       <SearchedContent>
-        {BookList.map((value, index, data) => <BookCard key={index} data={data} index={index} onPress={() => handleClickProduct(value)}/>)}
+        {BookList
+          .filter((book) => book.titulo.toLocaleLowerCase().includes(searchInput.toLowerCase()) || book.autor.toLocaleLowerCase().includes(searchInput.toLowerCase()))
+          .map((book, index, data) => (
+          <BookCard
+            key={index}
+            data={data}
+            index={index}
+            onPress={() => handleClickProduct(book)}
+          />
+        ))}
       </SearchedContent>
 
     </>

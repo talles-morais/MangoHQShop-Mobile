@@ -17,7 +17,7 @@ export default function SimpleHeader({ backTo, navigation, cart, title, children
       <SimpleHeaderWrapper>
         <Header>
           <Group >
-            <GoTo onPress={() => navigation.navigate(backTo)}>
+            <GoTo onPress={() => navigation.goBack()}>
               <Icon source={require("../../../assets/product/back.png")} />
             </GoTo>
             <ScreenTitle>{title}</ScreenTitle>

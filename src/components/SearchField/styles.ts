@@ -1,7 +1,6 @@
 import { RFValue } from "react-native-responsive-fontsize"
 import styled from "styled-components/native"
 import { Ionicons } from '@expo/vector-icons'
-import theme from "../../global/styles/theme";
 import { DefaultTheme } from "styled-components/dist/types";
 
 export const SearchBar = styled.TouchableOpacity<{theme : DefaultTheme}>`

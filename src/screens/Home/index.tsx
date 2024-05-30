@@ -1,4 +1,6 @@
+import React, { useEffect, useState } from "react";
 import { ImageBackground, ScrollView, Text } from "react-native";
+import { NavigationProp } from "@react-navigation/native";
 import {
   CustomText,
   DecorLine,
@@ -16,15 +18,12 @@ import {
 import MangoLogo from "../../../assets/header/logo.svg"
 import ByronLogo from "../../../assets/footer/logo-byron.svg"
 import SearchField from "../../components/SearchField";
-import React, { useEffect, useState } from "react";
 import theme from "../../global/styles/theme";
 import SocialIcon from "../../components/SocialIcon";
 import HighlightCarousel from "../../components/HighlightCarousel";
 import BookCard from "../../components/BookCard";
 import api from "../../services/api";
 import ForYou from "../../components/ForYou";
-import { NavigationProp } from "@react-navigation/native";
-import { useAuth } from "../../hooks/auth";
 
 interface BookProps {
   autor: string,
