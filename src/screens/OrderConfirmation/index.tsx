@@ -16,10 +16,11 @@ export default function OrderConfirmation({ navigation }: OrderConfirmationProps
       <View>
         <SimpleHeader
           title="Compra Finalizada"
-          backTo="Home"
           navigation={navigation}
         >
-          <SearchField />
+          <SearchField 
+            navigation={navigation}
+          />
         </SimpleHeader>
 
         <MainWrapper>

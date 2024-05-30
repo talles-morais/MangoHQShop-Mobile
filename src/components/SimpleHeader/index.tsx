@@ -6,12 +6,11 @@ import { NavigationProp } from "@react-navigation/native";
 interface HeaderProps {
   title: string,
   cart?: boolean,
-  backTo: string,
   navigation: NavigationProp<any>,
   children?: React.JSX.Element,
 }
 
-export default function SimpleHeader({ backTo, navigation, cart, title, children }: HeaderProps) {
+export default function SimpleHeader({ navigation, cart, title, children }: HeaderProps) {
   return (
     <ImageBackground source={require("../../../assets/background/bg-yellow.png")}>
       <SimpleHeaderWrapper>

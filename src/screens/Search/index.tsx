@@ -45,7 +45,6 @@ export default function Search({ navigation }: SearchProps) {
     <>
       <SimpleHeader
         title="Resultados busca"
-        backTo="Home"
         cart
         navigation={navigation}
       >
@@ -57,8 +56,10 @@ export default function Search({ navigation }: SearchProps) {
       </SimpleHeader>
       <SearchedContent>
         {BookList
-          .filter((book) => book.titulo.toLocaleLowerCase().includes(searchInput.toLowerCase()) || book.autor.toLocaleLowerCase().includes(searchInput.toLowerCase()))
-          .map((book, index, data) => (
+          .filter((book) => 
+            book.titulo.toLocaleLowerCase().includes(searchInput.toLowerCase()) || 
+            book.autor.toLocaleLowerCase().includes(searchInput.toLowerCase())
+          ).map((book, index, data) => (
           <BookCard
             key={index}
             data={data}

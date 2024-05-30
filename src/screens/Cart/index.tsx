@@ -89,7 +89,7 @@ export default function Cart({navigation} : CartProps) {
 
   return (
     <ScrollView>
-        <SimpleHeader title="Carrinho" cart backTo="Home" navigation={navigation}>
+        <SimpleHeader title="Carrinho" cart navigation={navigation}>
           <SearchField 
             navigation={navigation}
           />

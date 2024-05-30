@@ -72,7 +72,7 @@ export default function Product({ navigation }: ProductProps) {
 
   return (
     <ScrollView>
-      <SimpleHeader title="Produto" backTo="Home" navigation={navigation} />
+      <SimpleHeader title="Produto" navigation={navigation} />
 
       <ImageBackground source={require("../../../assets/background/bg-white.png")}>
 
